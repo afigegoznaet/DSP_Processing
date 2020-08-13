@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="raw_pcm_song4.raw">sounds/07. I Got It Good.raw</file>
+    </qresource>
+</RCC>

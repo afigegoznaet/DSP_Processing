@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="raw_pcm_song5.raw">sounds/Mahavishnu Orchestra - 1975 Vision Of The Emerald Beyond - 03 - Lila`s Dance.raw</file>
+    </qresource>
+</RCC>

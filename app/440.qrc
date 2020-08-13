@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sounds/440.raw</file>
+        <file>sounds/440-sawtooth.raw</file>
+        <file>sounds/440-square.raw</file>
+    </qresource>
+</RCC>

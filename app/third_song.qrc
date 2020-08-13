@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="raw_pcm_song3.raw">sounds/Pat Metheny feat.Jaco Pastorius - Bright Size Life - 02 - Sirabhorn.raw</file>
+    </qresource>
+</RCC>
