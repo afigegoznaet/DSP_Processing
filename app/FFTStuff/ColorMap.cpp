@@ -68,7 +68,7 @@ void ColorMap::parseSlice(int &pos) {
 }
 void ColorMap::generateSpectrumMap() {
 	int pos = 0;
-	for (int i = 0; i < specNum && dataProcessingEnabled; i++) {
+	for (int i = 0; i < specNum && makeColorMap; i++) {
 		parseSlice(pos);
 	}
 	emit finished(slicesResult);
@@ -84,6 +84,7 @@ void ColorMap::calculateAverages() {
 		avgBlockRun, totalRun, double(totalRun) / 1000000000);
 	avgMutex.unlock();
 	emit averageRuns(stats);
+	makeColorMap = true;
 }
 
 void ColorMap::startProcessing() {
@@ -103,7 +104,7 @@ void ColorMap::calculationComplete(const std::vector<double> &spectra) {
 	cv.notify_one();
 }
 void ColorMap::currentFileChanged(const QString &fName) {
-	dataProcessingEnabled = false;
+	makeColorMap = false;
 	avgMutex.lock();
 	if (rawFile) {
 		rawFile->close();
@@ -116,6 +117,6 @@ void ColorMap::currentFileChanged(const QString &fName) {
 	fileData = QByteArray::fromRawData(
 		reinterpret_cast<char *>(rawFile->map(0, rawFile->size())),
 		rawFile->size());
-	dataProcessingEnabled = true;
+	makeColorMap = true;
 	avgMutex.unlock();
 }

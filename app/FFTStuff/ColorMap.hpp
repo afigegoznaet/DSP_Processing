@@ -37,6 +37,7 @@ private:
 private:
 	bool							 colorMapReady{true};
 	bool							 dataProcessingEnabled{false};
+	bool							 makeColorMap{true};
 	SpectrumAnalyzer *				 analizer;
 	DataProcessor *					 dataProcessor;
 	std::vector<double>				 buf1;

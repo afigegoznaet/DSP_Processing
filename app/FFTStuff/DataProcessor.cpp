@@ -45,6 +45,28 @@ void DataProcessor::setSampleRate(int freq) {
 void DataProcessor::setBitDepth(int bytes) { bytesPerSample = bytes; }
 
 void DataProcessor::processData(char *data, qint64 dataLen) {
+	auto charData = reinterpret_cast<char *>(data);
+	auto shortData = reinterpret_cast<short *>(data);
+	auto threeBInt = reinterpret_cast<struct threeBInt *>(data);
+	auto intData = reinterpret_cast<int *>(data);
+
+	for (qint64 i = 0; i < dataLen / bytesPerSample; i++) {
+		// qDebug()<<transferredBytes/sampleBitSize<<"_"<<i;
+		switch (bytesPerSample) {
+		default:
+			charData[i] = filter.getTick(charData[i]);
+			break;
+		case 2:
+			shortData[i] = filter.getTick(shortData[i]);
+			break;
+		case 3:
+			threeBInt[i] = filter.getTick(threeBInt[i].val);
+			break;
+		case 4:
+			intData[i] = filter.getTick(intData[i]);
+			break;
+		}
+	}
 }
 
 std::vector<double> DataProcessor::reinterpret_data(const char *data,
